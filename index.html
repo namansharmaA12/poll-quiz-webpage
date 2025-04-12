@@ -1,78 +1,131 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Authenticated Website - Poll & Quiz</title>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
-    rel="stylesheet"/>
-  <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>QuizMaster - Test Your Skills</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,600|Roboto+Slab:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
+    
 <body>
-  <!-- Login Modal (Intro Page) -->
-  <div class="login-modal" id="loginModal">
-    <div class="login-box">
-      <!-- Logo in login box -->
-      <img
-        src="images/poll_quiz_logo-removebg-preview.png"
-        alt="Logo"
-        class="logo"
-      />
-      <h2>Welcome Back!</h2>
-      <input type="text" id="username" placeholder="Username" autocomplete="off" />
-      <input type="password" id="password" placeholder="Password" />
-      <button class="login-btn" onclick="login()">Login</button>
-      <div class="error-message" id="errorMessage"></div>
+    <div id="wrapper">
+        <nav>
+            <div class="nav-container">
+                <div class="logo">QuizMaster</div>s
+                <ul>
+                    <li id="about"><i class="fas fa-info-circle"></i> About</li>
+                    <li><a href="tel:8650562634" class="mail"><i class="fas fa-phone-alt"></i> Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+        
+        <div id="form-box">
+            <div class="text">
+                <h1 class="welcome-title">Welcome to <span>QuizMaster</span></h1>
+                <p>Where fun, knowledge, and competition meet! Challenge yourself with our interactive quizzes covering HTML, CSS, JavaScript, Python, and C language.</p>
+                <div class="features">
+                    <div class="feature-item">
+                        <i class="fas fa-trophy"></i>
+                        <span>Test Your Skills</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Track Progress</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-award"></i>
+                        <span>Earn Scores</span>
+                    </div>
+                </div>
+                <h2 class="bigsize">Choose Your Challenge</h2>
+            </div>
+            
+            <form class="quiz-selector">
+                <div class="select-wrapper">
+                    <i class="fas fa-code"></i>
+                    <select id="language">
+                        <option value="HTML" selected>HTML</option>
+                        <option value="CSS">CSS</option>
+                        <option value="JS">JavaScript</option>
+                        <option value="PY">Python</option>
+                        <option value="C">C Language</option>
+                    </select> 
+                </div>
+                <a href="#lb3" class="choose-lang1 button">
+                    <button class="button" style="vertical-align:middle">
+                        <span>Start Quiz <i class="fas fa-arrow-right"></i></span>
+                    </button>
+                </a>
+            </form>
+        </div>    
     </div>
-  </div>
+    
+    <div class="quiz">
+        <div class="quiz-header">
+            <div id="info">
+                <div id="score"><i class="fas fa-star"></i> Score: 0</div>
+                <div id="ques-left"><i class="far fa-question-circle"></i> Question: 1/20</div>
+            </div>
+            <div id="progress-bar">
+                <div id="progress"></div>
+            </div>
+            <div id="ques-view"></div>
+        </div>
+        
+        <div class="question-container">
+            <div class="question">
+                <h1>Question</h1>
+            </div>
+            
+            <div class="choice">
+                <div class="options"><input type="radio" name="options" value="option1" id="opt0"><label for="opt0" id="lb0"><span class="option-number">A</span> Option1</label></div>
+                <div class="options"><input type="radio" name="options" value="option2" id="opt1"><label for="opt1" id="lb1"><span class="option-number">B</span> Option2</label></div>
+                <div class="options"><input type="radio" name="options" value="option3" checked="checked" id="opt2"><label for="opt2" id="lb2"><span class="option-number">C</span> Option3</label></div>
+                <div class="options"><input type="radio" name="options" value="option4" id="opt3"><label for="opt3" id="lb3"><span class="option-number">D</span> Option4</label></div>   
+            </div>
 
-  <!-- Header with Logo for Main Content -->
-  <header>
-    <div class="logo-container">
-      <img src="images/poll_quiz_logo-removebg-preview.png" alt="Logo" />
+            <div class="ans-btn">
+                <button type="button" class="submit-answer">
+                    <span>Submit Answer</span>
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+                <a href="#display-final-score" type="button" class="view-results">
+                    <span>View Results</span>
+                    <i class="fas fa-chart-bar"></i>
+                </a>
+            </div>
+        </div>
     </div>
-  </header>
-
-  <!-- Main Content (Hidden until login) -->
-  <div class="container" id="mainContent" style="display: none;">
-    <div class="nav">
-      <button onclick="showSection('poll')">Poll</button>
-      <button onclick="showSection('quiz')">Quiz</button>
+    
+    <div class="final-result">
+        <div class="result-container">
+            <div class="trophy">
+                <i class="fas fa-trophy"></i>
+            </div>
+            <h1>Quiz Completed!</h1>
+            <div class="result-stats">
+                <div class="stat-item">
+                    <i class="fas fa-check-circle"></i>
+                    <span id="correct-answers">3</span> Correct
+                </div>
+                <div class="stat-item">
+                    <i class="fas fa-times-circle"></i>
+                    <span id="wrong-answers">4</span> Wrong
+                </div>
+                <div class="stat-item">
+                    <i class="fas fa-percentage"></i>
+                    <span id="percentage">60</span>% Accuracy
+                </div>
+            </div>
+            <div id="display-final-score">Your Score: <span>35</span></div>
+            <div class="remark">Remark: <span>Satisfactory, Keep trying.</span></div>
+            <button id="restart">
+                <i class="fas fa-redo"></i> Try Again
+            </button>        
+        </div>
     </div>
-
-    <!-- Poll Section -->
-    <div class="card active" id="poll">
-      <div class="question">What is your favorite programming language?</div>
-      <div class="options">
-        <div class="option" onclick="selectPollOption(this)">JavaScript</div>
-        <div class="option" onclick="selectPollOption(this)">Python</div>
-        <div class="option" onclick="selectPollOption(this)">Java</div>
-        <div class="option" onclick="selectPollOption(this)">C++</div>
-      </div>
-      <button class="submit-btn" onclick="submitPoll()">Submit</button>
-      <div class="result" id="pollResult"></div>
-    </div>
-
-    <!-- Quiz Section -->
-    <div class="card" id="quiz">
-      <div class="question" id="quizQuestion"></div>
-      <div class="options" id="quizOptions"></div>
-      <button class="submit-btn" onclick="nextQuestion()" id="nextBtn">Next</button>
-      <div class="result" id="quizResult"></div>
-    </div>
-  </div>
-
-  <!-- Footer with Social Media Links -->
-  <footer>
-    <p>Connect with us:</p>
-    <ul class="social-links">
-      <li><a href="https://www.facebook.com/" target="_blank">Facebook</a></li>
-      <li><a href="https://www.facebook.com/" target="_blank">Twitter</a></li>
-      <li><a href="https://www.instagram.com/?hl=en" target="_blank">Instagram</a></li>
-    </ul>
-  </footer>
-
-  <script src="script.js"></script>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
